@@ -229,8 +229,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameController\EcoStats.cs" />
+    <Compile Include="Assets\Scripts\GameController\SaveGame.cs" />
     <Compile Include="Assets\Scripts\GameController\TimeController.cs" />
     <Compile Include="Assets\Scripts\General\RenderOrder.cs" />
+    <Compile Include="Assets\Scripts\Placable\Placable.cs" />
     <Compile Include="Assets\Scripts\Player\InputController.cs" />
     <Compile Include="Assets\Scripts\UI\CO2BarMoving.cs" />
   </ItemGroup>

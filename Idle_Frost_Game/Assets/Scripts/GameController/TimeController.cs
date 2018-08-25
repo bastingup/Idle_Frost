@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour {
 
-    private System.DateTime lastTime;
-    private float deltaSeconds;
+    public System.DateTime lastTime;
+    public int deltaSeconds;
 
 	void Start () {
-        deltaSeconds = (float)(lastTime - System.DateTime.Now).TotalSeconds;
+        deltaSeconds = (int)(Mathf.Round((float)(lastTime - System.DateTime.Now).TotalSeconds));
 	}
-	
-	
-	void Update () {
-		
-	}
+
+    private void OnApplicationQuit()
+    {
+       
+    }
 }

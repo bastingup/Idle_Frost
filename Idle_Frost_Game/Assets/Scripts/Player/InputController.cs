@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
-	// Use this for initialization
+    private float speed = 0.01f;
+    private CharacterController character;
+
 	void Start () {
-		
+        character = this.GetComponent<CharacterController>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+            this.transform.Translate(touchDeltaPosition.x * speed, touchDeltaPosition.y * speed, 0);
+        }
+    }
 }
