@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.BM.IdleFrost" android:installLocation="preferExternal">
+  <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:xlargeScreens="true" />
+  <application android:icon="@drawable/app_icon" android:label="@string/app_name" android:theme="@style/UnityThemeSelector" android:debuggable="false" android:isGame="true" android:banner="@drawable/app_banner">
+    <activity android:label="@string/app_name" android:name="com.unity3d.player.UnityPlayerActivity" android:screenOrientation="sensorLandscape" android:launchMode="singleTask" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+    </activity>
+    <!-- Xiaomi SDK Need -->
+    <activity android:configChanges="orientation|screenSize" android:name="com.xiaomi.gamecenter.sdk.ui.MiActivity" android:screenOrientation="behind" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+    </activity>
+    <activity android:configChanges="orientation|screenSize" android:exported="true" android:name="com.xiaomi.gamecenter.sdk.ui.PayListActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:configChanges="orientation|screenSize" android:exported="true" android:name="com.xiaomi.gamecenter.alipay.HyAlipayActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:configChanges="orientation|screenSize" android:exported="true" android:name="com.xiaomi.account.openauth.AuthorizeActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:configChanges="orientation|screenSize" android:exported="true" android:name="com.xiaomi.gamecenter.wxwap.HyWxWappayActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:configChanges="orientation|keyboardHidden|navigation|screenSize" android:exported="false" android:name="com.alipay.sdk.app.H5PayActivity" android:screenOrientation="behind" android:windowSoftInputMode="adjustResize|stateHidden" />
+    <meta-data android:name="unity.build-id" android:value="8c2346de-0fe3-40c4-b9df-130aff0142d2" />
+    <meta-data android:name="unity.splash-mode" android:value="0" />
+    <meta-data android:name="unity.splash-enable" android:value="True" />
+    <meta-data android:name="android.max_aspect" android:value="2.1" />
+  </application>
+  <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="27" />
+  <uses-permission android:name="android.permission.GET_TASKS" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="com.xiaomi.sdk.permission.PAYMENT" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="com.xiaomi.permission.AUTH_SERVICE" />
+  <uses-feature android:glEsVersion="0x00020000" />
+  <uses-feature android:name="android.hardware.vulkan" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
+</manifest>

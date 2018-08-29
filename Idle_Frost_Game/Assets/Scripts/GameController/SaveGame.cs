@@ -4,57 +4,85 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SaveGame : MonoBehaviour {
 
+    [SerializeField]
+    private Button quitButton;
+    [SerializeField]
+    private Button loadButton;
+
+    [HideInInspector]
+    public DateTime lastTime;
+    [HideInInspector]
+    public int deltaSeconds;
+
     // Load the scene and the save file at beginning of session
-    private void Awake()
+    private void Start()
     {
-        LoadGameProgress();
-        LoadSave();
+        LoadTime();
+        quitButton.onClick.AddListener(SaveAndQuit);
+        loadButton.onClick.AddListener(LoadGame); 
     }
 
     // In case there is something super specific that will need to be stored to a seperate save file
     private void WriteSave()
     {
-        FileStream file = File.Open(Application.dataPath + "SaveGame.dat", FileMode.Open);
+        FileStream file = File.Open(Application.dataPath + "/SaveGame.dat", FileMode.Open);
         BinaryFormatter binary = new BinaryFormatter();
         Data data = new Data();
-
-        data.lastTime = GameObject.FindGameObjectWithTag("GameController").GetComponent<TimeController>().lastTime;
+        data.lastTime = this.lastTime;
 
         binary.Serialize(file, data);
         file.Close();
     }
     private void LoadSave()
     {
-        if (File.Exists(Application.dataPath + "SaveGame.dat"))
+        if (File.Exists(Application.dataPath + "/SaveGame.dat"))
         {
-            FileStream file = File.Open(Application.dataPath + "SaveGame.dat", FileMode.Open);
+            FileStream file = File.Open(Application.dataPath + "/SaveGame.dat", FileMode.Open);
             BinaryFormatter binary = new BinaryFormatter();
             Data data = (Data)binary.Deserialize(file);
 
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<TimeController>().lastTime = data.lastTime;
+            lastTime = data.lastTime;
         }
     }
 
     // Functions to save and load the current state of the scene
-    private void SaveGameProgress()
+    private void SaveTime()
     {
-        PlayerPrefs.SetInt("GameScene", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetFloat("timeControll", lastTime.ToFileTime());
         PlayerPrefs.Save();
     }
-    private void LoadGameProgress()
+    private void LoadTime()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("GameScene"));
+        float last;
+        if (PlayerPrefs.GetString("timeControll") != null)
+        {
+            last = PlayerPrefs.GetFloat("timeControll");
+        }
+        else
+        {
+            last = DateTime.Now.ToFileTime();
+        }
+        deltaSeconds = (int)(Mathf.Round(last - DateTime.Now.ToFileTime()));
     }
 
     // Do the save functions right before closing the game
-    private void OnApplicationQuit()
+    void SaveAndQuit()
     {
-        SaveGameProgress();
-        WriteSave();
+        SaveTime();
+        Application.Quit();
+    }
+    void LoadGame()
+    {
+        LoadTime();
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 800, 250), deltaSeconds.ToString());
     }
 }
 
