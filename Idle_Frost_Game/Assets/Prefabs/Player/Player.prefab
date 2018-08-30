@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 143925215722768938}
   - component: {fileID: 114909371683254644}
   - component: {fileID: 114956520083321562}
+  - component: {fileID: 114336571641281998}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -101,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215868520186148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.6, z: 0}
+  m_LocalPosition: {x: -1.03, y: 7.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4603184829127988}
@@ -156,7 +157,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.4769506
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -183,7 +184,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -1.1, y: 0}
   serializedVersion: 2
   m_Radius: 1.7
 --- !u!81 &81843174209242550
@@ -193,6 +194,18 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1636211774791016}
   m_Enabled: 1
+--- !u!114 &114336571641281998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1215868520186148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6b61e7db7eac345a7d6fde393e343a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pleayerHealth: 75
 --- !u!114 &114360840252657982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,7 +295,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b3b71df833708c41b74b22378150b68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
