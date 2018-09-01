@@ -26,54 +26,31 @@ public class SaveGame : MonoBehaviour {
         loadButton.onClick.AddListener(LoadGame); 
     }
 
-    // In case there is something super specific that will need to be stored to a seperate save file
-    private void WriteSave()
-    {
-        FileStream file = File.Open(Application.dataPath + "/SaveGame.dat", FileMode.Open);
-        BinaryFormatter binary = new BinaryFormatter();
-        Data data = new Data();
-        data.lastTime = this.lastTime;
-
-        binary.Serialize(file, data);
-        file.Close();
-    }
-    private void LoadSave()
-    {
-        if (File.Exists(Application.dataPath + "/SaveGame.dat"))
-        {
-            FileStream file = File.Open(Application.dataPath + "/SaveGame.dat", FileMode.Open);
-            BinaryFormatter binary = new BinaryFormatter();
-            Data data = (Data)binary.Deserialize(file);
-
-            lastTime = data.lastTime;
-        }
-    }
-
     // Functions to save and load the current state of the scene
     private void SaveTime()
     {
-        PlayerPrefs.SetFloat("timeControll", lastTime.ToFileTime());
+        PlayerPrefs.SetString("timeControll", System.DateTime.Now.ToString());
         PlayerPrefs.Save();
+        //Application.Quit();
     }
     private void LoadTime()
     {
-        float last;
+        DateTime last;
         if (PlayerPrefs.GetString("timeControll") != null)
         {
-            last = PlayerPrefs.GetFloat("timeControll");
+            last = DateTime.FromBinary(Convert.ToInt64(PlayerPrefs.GetString("timeControll")));
         }
         else
         {
-            last = DateTime.Now.ToFileTime();
+            last = DateTime.Now;
         }
-        deltaSeconds = (int)(Mathf.Round(last - DateTime.Now.ToFileTime()));
+        deltaSeconds = (int)Mathf.Round((float)((last - DateTime.Now).TotalSeconds));
     }
 
     // Do the save functions right before closing the game
     void SaveAndQuit()
     {
         SaveTime();
-        Application.Quit();
     }
     void LoadGame()
     {
@@ -82,12 +59,6 @@ public class SaveGame : MonoBehaviour {
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 800, 250), deltaSeconds.ToString());
+        GUI.Label(new Rect(10, 10, 1600, 600), deltaSeconds.ToString());
     }
-}
-
-[Serializable]
-class Data
-{
-    public DateTime lastTime;
 }

@@ -7,6 +7,8 @@ public class ResourceAndItemInteraction : MonoBehaviour {
     [SerializeField]
     private bool isItem;
     [SerializeField]
+    private bool isBuilding;
+    [SerializeField]
     private GameObject spawn;
 	
 	void Start () {
@@ -23,6 +25,10 @@ public class ResourceAndItemInteraction : MonoBehaviour {
         {
             Instantiate(spawn, this.transform.position, new Quaternion());
             Destroy(gameObject);
+        }
+        else if (isBuilding)
+        {
+
         }
         else
         {
