@@ -6,17 +6,10 @@ public class PlayerInventory : MonoBehaviour {
  
     public int coal;
     public int seeds;
+    public int renewables;
+    public int uranium;
     public int wood;
     public int money;
-
-    void Start () {
-		
-	}
-	
-	
-	void Update () {
-		
-	}
 
     private void OnGUI()
     {

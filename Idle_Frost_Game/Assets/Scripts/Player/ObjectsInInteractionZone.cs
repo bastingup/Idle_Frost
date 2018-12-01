@@ -30,7 +30,6 @@ public class ObjectsInInteractionZone : MonoBehaviour {
         if (!resourceList.Contains(other.gameObject) && interactionTags.Contains(other.gameObject.tag))
         {
             resourceList.Add(other.gameObject);
-            Debug.Log(other.name);
         }
     }
     private void OnTriggerExit2D(Collider2D other)

@@ -113,10 +113,10 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 50667894c33b478dc38ae949114bb1e8 Assembly-CSharp.dll:AppStoresSupport.AppStoreSettings
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarCO2
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarHealth
-8782bfd556101c4f705f3556d724ac5e Assembly-CSharp.dll:.PlayerHealth
+9f800ddd18f189c31299631ec591e954 Assembly-CSharp.dll:.PlayerHealth
 8f5e445028bb31cdc6e69c56d7b2b836 Assembly-CSharp.dll:.ObjectsInInteractionZone
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarGlobalTemp
-fce304a0b1a4c8d003982236f2af4727 Assembly-CSharp.dll:.ResourceAndItemInteraction
+56e673c7c5d879a8c7e65bc167490499 Assembly-CSharp.dll:.ResourceAndItemInteraction
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -131,7 +131,9 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+4b4c2a54538a43a5085d25e95239d587 Assembly-CSharp.dll:.PlayerInventory
 145da49bb0d2844c5256fd07b0aa4348 Assembly-CSharp.dll:.SaveGame
+338a0b642222452575b4190ddfac2277 Assembly-CSharp.dll:.Generator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 2a56361227def9f56c2cf57a88b32f4d UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -147,4 +149,6 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RenderOrder
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 47e315a2fd566d0e90d3c44ac47d2a71 Assembly-CSharp.dll:.EcoStats
+dd2bd405518eafb9de4b86424168985d Assembly-CSharp.dll:.Oven
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarPlayerTemp
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InputController

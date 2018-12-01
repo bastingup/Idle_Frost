@@ -5,36 +5,42 @@ using UnityEngine;
 public class Oven : MonoBehaviour {
 
     public bool ovenActive = false;
+    [SerializeField]
+    private bool heatingPlayerUp = false;
     private GameObject player;
 
-    void Start () {
-		
+    void Start ()
+    {
+        this.transform.Find("Area").GetComponent<CircleCollider2D>();
 	}
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "PlayerCollider")
         {
-            player = GameObject.FindWithTag("Player");
+            if (ovenActive && !heatingPlayerUp)
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().heatingUp = true;
+                InvokeRepeating("HeatingUpPlayer", 0.5f, 0.5f);
+                heatingPlayerUp = true;
+            }
+            if (!ovenActive && heatingPlayerUp)
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().heatingUp = false;
+                heatingPlayerUp = false;
+            }  
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (ovenActive)
-        {
-            InvokeRepeating("HeatingUpPlayer", 1.0f, 1.0f);
-        } 
-    }
-
     private void HeatingUpPlayer()
-    {
-        player.GetComponent<PlayerHealth>().playerTemp += 4;
+    { 
+        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().playerTemp += 1;
     }
 
     public void ChangeOvenStatus()
     {
         ovenActive = !ovenActive;
         this.gameObject.transform.Find("Activated").GetComponent<Light>().enabled = ovenActive;
+        this.gameObject.transform.Find("Activated").GetComponent<SpriteRenderer>().enabled = ovenActive;
     }
 }

@@ -8,7 +8,7 @@ public class Generator : MonoBehaviour {
     private bool guiTrue = false;
     [SerializeField]
     private int energyPerWood, energyPerCoal, energyPerRenew, energyPerUranium, energyInGenerator, co2PerWood, co2PerCoal, co2PerRenew, co2PerUranium;
-
+    private GameObject oven;
     [SerializeField]
     private float energyDeductionInterval;
     private CircleCollider2D triggerArea;
@@ -18,8 +18,13 @@ public class Generator : MonoBehaviour {
 
     void Start ()
     {
-        triggerArea = GetComponent<CircleCollider2D>();
-        InvokeRepeating("DeductEnergy", 2.0f, 2.0f);
+        triggerArea = this.GetComponent<CircleCollider2D>();
+        InvokeRepeating("DeductEnergy", 1.0f, 1.0f);
+
+        fuelWithWood.onClick.AddListener(FuelWithWood);
+        fuelWithCoal.onClick.AddListener(FuelWithCoal);
+        fuelWithRenew.onClick.AddListener(FuelWithRenewables);
+        fuelWithUranium.onClick.AddListener(FuelWithUranium);
 	}
 
     private void OnTriggerExit2D(Collider2D other)
@@ -65,7 +70,7 @@ public class Generator : MonoBehaviour {
     // Function to deduct energy over time
     private void DeductEnergy()
     {
-        GameObject oven = GameObject.FindWithTag("Oven");
+        oven = GameObject.FindWithTag("Oven");
         if (energyInGenerator > 0)
         {
             energyInGenerator -= 1;

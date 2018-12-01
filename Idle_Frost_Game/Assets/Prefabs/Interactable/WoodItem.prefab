@@ -161,6 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isItem: 1
   spawn: {fileID: 0}
+  type: Wood
+  gainResources: 1
 --- !u!114 &114922089981136380
 MonoBehaviour:
   m_ObjectHideFlags: 1

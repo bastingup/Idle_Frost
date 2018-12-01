@@ -12,6 +12,7 @@ TagManager:
   - Oven
   - Camp
   - Generator
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX

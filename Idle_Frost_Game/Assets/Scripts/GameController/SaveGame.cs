@@ -82,9 +82,13 @@ public class SaveGame : MonoBehaviour {
     }
     private void LoadPlayerStats()
     {
-        GameObject player = GameObject.Find("Player");
-        int.TryParse(PlayerPrefs.GetString(("playerHealth")), out player.GetComponent<PlayerHealth>().playerHealth);
-        int.TryParse(PlayerPrefs.GetString(("playerTemp")), out player.GetComponent<PlayerHealth>().playerTemp);
+        // Check whether there is player health. If it is, load stuff. If it is not, don't load. Loading without saves will result in null/0 (?)
+        if (PlayerPrefs.GetString("playerHealth") != "")
+        {
+            GameObject player = GameObject.Find("Player");
+            int.TryParse(PlayerPrefs.GetString(("playerHealth")), out player.GetComponent<PlayerHealth>().playerHealth);
+            int.TryParse(PlayerPrefs.GetString(("playerTemp")), out player.GetComponent<PlayerHealth>().playerTemp);
+        }
     }
 
     private void SavePlayerprefs()
