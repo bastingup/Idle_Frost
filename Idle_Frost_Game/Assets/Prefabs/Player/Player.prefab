@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114909371683254644}
   - component: {fileID: 114956520083321562}
   - component: {fileID: 114336571641281998}
+  - component: {fileID: 114428312779544272}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -102,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215868520186148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.03, y: 7.71, z: 0}
+  m_LocalPosition: {x: -1.272, y: 18.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4603184829127988}
@@ -205,7 +206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6b61e7db7eac345a7d6fde393e343a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pleayerHealth: 75
+  playerHealth: 75
+  playerTemp: 50
+  heatingUp: 0
 --- !u!114 &114360840252657982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,6 +220,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1ca23ccf8a9ba4899874a227716767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114428312779544272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1215868520186148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72aca99af94c4b44b7eff5b89bee950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coal: 0
+  seeds: 0
+  wood: 0
+  money: 0
 --- !u!114 &114447228362446870
 MonoBehaviour:
   m_ObjectHideFlags: 1

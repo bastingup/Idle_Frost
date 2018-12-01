@@ -21,8 +21,16 @@ public class InteractionPlayer : MonoBehaviour {
 
     void Interaction()
     {
-        // Interaction target
-        GameObject.Find("PlayerInteractionZone").GetComponent<ObjectsInInteractionZone>().interactionTarget.GetComponent<ResourceAndItemInteraction>().Use();
+        if (GameObject.Find("PlayerInteractionZone").GetComponent<ObjectsInInteractionZone>().interactionTarget != null)
+        {
+            GameObject target = GameObject.Find("PlayerInteractionZone").GetComponent<ObjectsInInteractionZone>().interactionTarget;
+            
+            if (target.tag == "Resource" || target.tag == "Item")
+            {
+                // Interaction target if resource or item
+                GameObject.Find("PlayerInteractionZone").GetComponent<ObjectsInInteractionZone>().interactionTarget.GetComponent<ResourceAndItemInteraction>().Use();
+            }
+        }
     }
 
     void Information()

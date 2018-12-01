@@ -9,6 +9,9 @@ TagManager:
   - UI
   - Resource
   - Item
+  - Oven
+  - Camp
+  - Generator
   layers:
   - Default
   - TransparentFX

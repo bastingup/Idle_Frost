@@ -9,56 +9,94 @@ using UnityEngine.UI;
 public class SaveGame : MonoBehaviour {
 
     [SerializeField]
-    private Button quitButton;
+    private Button saveButton;
     [SerializeField]
     private Button loadButton;
 
-    [HideInInspector]
-    public DateTime lastTime;
-    [HideInInspector]
+    private DateTime lastTime;
     public int deltaSeconds;
 
     // Load the scene and the save file at beginning of session
     private void Start()
     {
-        LoadTime();
-        quitButton.onClick.AddListener(SaveAndQuit);
+        LoadGame();
+        saveButton.onClick.AddListener(Save);
         loadButton.onClick.AddListener(LoadGame); 
     }
 
-    // Functions to save and load the current state of the scene
-    private void SaveTime()
-    {
-        PlayerPrefs.SetString("timeControll", System.DateTime.Now.ToString());
-        PlayerPrefs.Save();
-        //Application.Quit();
-    }
-    private void LoadTime()
-    {
-        DateTime last;
-        if (PlayerPrefs.GetString("timeControll") != null)
-        {
-            last = DateTime.FromBinary(Convert.ToInt64(PlayerPrefs.GetString("timeControll")));
-        }
-        else
-        {
-            last = DateTime.Now;
-        }
-        deltaSeconds = (int)Mathf.Round((float)((last - DateTime.Now).TotalSeconds));
-    }
-
-    // Do the save functions right before closing the game
-    void SaveAndQuit()
+    // Save and load functions containing the save/load functions for different aspects
+    void Save()
     {
         SaveTime();
+        SaveItems();
+        SavePlayerprefs();
     }
     void LoadGame()
     {
         LoadTime();
+        LoadItems();
+        LoadPlayerStats();
+    }
+
+    // Functions to save and load the current and last time played
+    private void SaveTime()
+    {
+        PlayerPrefs.SetString("timeControll", DateTime.Now.ToString());
+        Debug.Log("Time saved");
+    }
+    private void LoadTime()
+    {
+        if (PlayerPrefs.GetString("timeControll") != "")
+        {
+            DateTime.TryParse(PlayerPrefs.GetString("timeControll"), out lastTime);
+        }
+        else
+        {
+            lastTime = DateTime.Now;
+        }
+        Debug.Log(lastTime.ToString());
+
+        deltaSeconds = (int)Mathf.Round((float)((lastTime - DateTime.Now).TotalSeconds));
+    }
+
+    private void SaveItems()
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerPrefs.SetString("coal", player.GetComponent<PlayerInventory>().coal.ToString());
+        PlayerPrefs.SetString("seeds", player.GetComponent<PlayerInventory>().seeds.ToString());
+        PlayerPrefs.SetString("wood", player.GetComponent<PlayerInventory>().wood.ToString());
+    }
+    private void LoadItems()
+    {
+        GameObject player = GameObject.Find("Player");
+        int.TryParse(PlayerPrefs.GetString(("coal")), out player.GetComponent<PlayerInventory>().coal);
+        int.TryParse(PlayerPrefs.GetString(("seeds")), out player.GetComponent<PlayerInventory>().seeds);
+        int.TryParse(PlayerPrefs.GetString(("wood")), out player.GetComponent<PlayerInventory>().wood);
+    }
+
+    private void SavePlayerStats()
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerPrefs.SetString("playerHealth", player.GetComponent<PlayerHealth>().playerHealth.ToString());
+        PlayerPrefs.SetString("playerTemp", player.GetComponent<PlayerHealth>().playerTemp.ToString());
+    }
+    private void LoadPlayerStats()
+    {
+        GameObject player = GameObject.Find("Player");
+        int.TryParse(PlayerPrefs.GetString(("playerHealth")), out player.GetComponent<PlayerHealth>().playerHealth);
+        int.TryParse(PlayerPrefs.GetString(("playerTemp")), out player.GetComponent<PlayerHealth>().playerTemp);
+    }
+
+    private void SavePlayerprefs()
+    {
+        PlayerPrefs.Save();
     }
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 1600, 600), deltaSeconds.ToString());
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 16;
+        GUI.Label(new Rect(Screen.width * 0.05f, Screen.height * 0.05f, 1600, 600), DateTime.Now.ToString(), style);
+        GUI.Label(new Rect(Screen.width * 0.05f, Screen.height * 0.1f, 1600, 600), lastTime.ToString(), style);
     }
 }

@@ -7,29 +7,22 @@ public class ResourceAndItemInteraction : MonoBehaviour {
     [SerializeField]
     private bool isItem;
     [SerializeField]
-    private bool isBuilding;
-    [SerializeField]
     private GameObject spawn;
 	
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
+	void Start ()
+    {
+
 	}
 
     public void Use()
     {
+        // Code for Resources
         if (!isItem)
         {
             Instantiate(spawn, this.transform.position, new Quaternion());
             Destroy(gameObject);
         }
-        else if (isBuilding)
-        {
-
-        }
+        // Code for items
         else
         {
             Destroy(gameObject);

@@ -13,13 +13,15 @@ public class ObjectsInInteractionZone : MonoBehaviour {
     {
         this.GetComponent<CircleCollider2D>();
 	}
-
-    private void Update()
+    void FixedUpdate()
     {
-        if(resourceList.Count > 0)
+        if (resourceList.Count > 0)
         {
             interactionTarget = FindClosest();
             ActivateInteractionSymbol(interactionTarget);
+        } else if (resourceList.Count <= 0)
+        {
+            interactionTarget = null;
         }
     }
 
@@ -28,10 +30,9 @@ public class ObjectsInInteractionZone : MonoBehaviour {
         if (!resourceList.Contains(other.gameObject) && interactionTags.Contains(other.gameObject.tag))
         {
             resourceList.Add(other.gameObject);
-            Debug.Log(other);
+            Debug.Log(other.name);
         }
     }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (resourceList.Contains(other.gameObject))
@@ -45,7 +46,6 @@ public class ObjectsInInteractionZone : MonoBehaviour {
     {
         go.gameObject.transform.Find("InteractionSymbol").GetComponent<SpriteRenderer>().enabled = true;
     }
-
     private void DeactivateInteractionSymbol(GameObject go)
     {
         go.gameObject.transform.Find("InteractionSymbol").GetComponent<SpriteRenderer>().enabled = false;

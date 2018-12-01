@@ -234,6 +234,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Buildings\Generator.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Oven.cs" />
     <Compile Include="Assets\Scripts\DEBUG\DEBUG.cs" />
     <Compile Include="Assets\Scripts\GameController\EcoStats.cs" />
     <Compile Include="Assets\Scripts\GameController\SaveGame.cs" />
@@ -243,10 +245,12 @@
     <Compile Include="Assets\Scripts\Player\InteractionPlayer.cs" />
     <Compile Include="Assets\Scripts\Player\ObjectsInInteractionZone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceAndItemInteraction.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarCO2.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarGlobalTemp.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarHealth.cs" />
+    <Compile Include="Assets\Scripts\UI\UIBarPlayerTemp.cs" />
     <Compile Include="Packages\com.unity.xiaomi@1.0.0\UnityChannel\XiaomiSupport\AppStoreSettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

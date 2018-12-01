@@ -6,14 +6,16 @@ public class UIBarHealth : MonoBehaviour {
 
     private int value;
 
-    void Start () {
-        value = GameObject.Find("Player").GetComponent<PlayerHealth>().pleayerHealth;
+    void Start ()
+    {
+        value = GameObject.Find("Player").GetComponent<PlayerHealth>().playerHealth;
         this.transform.localPosition = new Vector2(-100 + value, this.transform.localPosition.y);
     }
 	
 	
-	void Update () {
-        value = GameObject.Find("Player").GetComponent<PlayerHealth>().pleayerHealth;
+	void Update ()
+    {
+        value = GameObject.Find("Player").GetComponent<PlayerHealth>().playerHealth;
         this.transform.localPosition = new Vector2(-100 + value, this.transform.localPosition.y);
     }
 }
