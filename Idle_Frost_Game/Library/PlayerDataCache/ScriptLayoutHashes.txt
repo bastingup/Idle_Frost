@@ -148,7 +148,9 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RenderOrder
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-47e315a2fd566d0e90d3c44ac47d2a71 Assembly-CSharp.dll:.EcoStats
+051042ea442574e1b7ea403e3970368f Assembly-CSharp.dll:.EcoStats
 dd2bd405518eafb9de4b86424168985d Assembly-CSharp.dll:.Oven
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarPlayerTemp
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InputController
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarAir
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarRadiation

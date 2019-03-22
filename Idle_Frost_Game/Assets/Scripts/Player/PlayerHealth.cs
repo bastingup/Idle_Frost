@@ -15,18 +15,16 @@ public class PlayerHealth : MonoBehaviour {
 
     void CheckTempAndDecreaseHealth()
     {
-        if (!heatingUp)
+        if (playerTemp < 15)
         {
-            if (playerTemp < 15)
-            {
-                playerHealth -= 2;
-            }
-            else if (playerTemp > 85)
-            {
-                playerHealth -= 2;
-            }
-            playerTemp -= 1;
+            playerHealth -= 2;
         }
+        else if (playerTemp > 85)
+        {
+            playerHealth -= 2;
+        }
+        playerTemp -= 1;
+        
         AvoidValuesOutOfRange();
     }
 

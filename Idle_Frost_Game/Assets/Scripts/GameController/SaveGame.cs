@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.UI;
 
 public class SaveGame : MonoBehaviour {
@@ -29,12 +27,15 @@ public class SaveGame : MonoBehaviour {
     {
         SaveTime();
         SaveItems();
+        SaveGlobalStats();
         SavePlayerprefs();
+        QuitGame();
     }
     void LoadGame()
     {
         LoadTime();
         LoadItems();
+        LoadGlobalStats();
         LoadPlayerStats();
     }
 
@@ -73,6 +74,22 @@ public class SaveGame : MonoBehaviour {
         int.TryParse(PlayerPrefs.GetString(("seeds")), out player.GetComponent<PlayerInventory>().seeds);
         int.TryParse(PlayerPrefs.GetString(("wood")), out player.GetComponent<PlayerInventory>().wood);
     }
+    
+    private void SaveGlobalStats()
+    {
+        EcoStats ecoStats = GameObject.FindWithTag("GameController").GetComponent<EcoStats>();
+        PlayerPrefs.SetString("co2", ecoStats.co2Value.ToString());
+        PlayerPrefs.SetString("globalTemp", ecoStats.globalTempValue.ToString());
+    }
+    private void LoadGlobalStats()
+    {
+        if (PlayerPrefs.GetString("playerHealth") != "")
+        {
+            EcoStats ecoStats = GameObject.FindWithTag("GameController").GetComponent<EcoStats>();
+            int.TryParse(PlayerPrefs.GetString(("co2")), out ecoStats.co2Value);
+            int.TryParse(PlayerPrefs.GetString(("globalTemp")), out ecoStats.globalTempValue);
+        }
+    }
 
     private void SavePlayerStats()
     {
@@ -94,6 +111,10 @@ public class SaveGame : MonoBehaviour {
     private void SavePlayerprefs()
     {
         PlayerPrefs.Save();
+    }
+    private void QuitGame()
+    {
+        Application.Quit();
     }
 
     private void OnGUI()

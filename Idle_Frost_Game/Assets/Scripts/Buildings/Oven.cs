@@ -16,25 +16,16 @@ public class Oven : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "PlayerCollider")
+        if (other.tag == "PlayerCollider" && ovenActive)
         {
-            if (ovenActive && !heatingPlayerUp)
-            {
-                GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().heatingUp = true;
-                InvokeRepeating("HeatingUpPlayer", 0.5f, 0.5f);
-                heatingPlayerUp = true;
-            }
-            if (!ovenActive && heatingPlayerUp)
-            {
-                GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().heatingUp = false;
-                heatingPlayerUp = false;
-            }  
+            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().heatingUp = true;
+            InvokeRepeating("HeatingUpPlayer", 0.5f, 0.5f);
         }
     }
 
     private void HeatingUpPlayer()
     { 
-        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().playerTemp += 1;
+        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().playerTemp += 2;
     }
 
     public void ChangeOvenStatus()
