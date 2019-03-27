@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             playerHealth -= 0.001f;
         }
-        playerTemp -= 0.01f;
+        playerTemp -= 0.02f;
     }
 
     void AvoidValuesOutOfRange()

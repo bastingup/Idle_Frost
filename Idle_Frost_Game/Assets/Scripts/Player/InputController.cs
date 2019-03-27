@@ -17,14 +17,29 @@ public class InputController : MonoBehaviour {
     {
         if (Input.touchCount > 0)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            // Check wether the touch input is given at the center 76% of the screen on the x axis
+            if (Input.GetTouch(0).position.x > Screen.width * 0.12f &&
+                Input.GetTouch(0).position.x < Screen.width * 0.88f)
             {
-                touchInitialPosition = Input.GetTouch(0).position;
-            }
-            Vector2 touchDeltaPosition = Input.GetTouch(0).position - touchInitialPosition;
-            touchDeltaPosition = CheckMaximum(touchDeltaPosition);
+                // Movement
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    touchInitialPosition = Input.GetTouch(0).position;
+                }
+                Vector2 touchDeltaPosition = Input.GetTouch(0).position - touchInitialPosition;
+                touchDeltaPosition = CheckMaximum(touchDeltaPosition);
+                this.transform.Translate(touchDeltaPosition.x * speed, touchDeltaPosition.y * speed, 0);
 
-            this.transform.Translate(touchDeltaPosition.x * speed, touchDeltaPosition.y * speed, 0);
+                // Flip Player
+                if (touchDeltaPosition.x > 0)
+                {
+                    this.transform.localScale = FlipPlayer(false);
+                }
+                else
+                {
+                    this.transform.localScale = FlipPlayer(true);
+                }
+            }
         }
     }
 
@@ -49,5 +64,17 @@ public class InputController : MonoBehaviour {
             vec.y = -limit;
         }
         return vec;
+    }
+
+    Vector2 FlipPlayer(bool goingLeft)
+    {
+        if (goingLeft)
+        {
+            return new Vector2(1.0f, 1.0f);
+        }
+        else
+        {
+            return new Vector2(-1.0f, 1.0f);
+        }
     }
 }

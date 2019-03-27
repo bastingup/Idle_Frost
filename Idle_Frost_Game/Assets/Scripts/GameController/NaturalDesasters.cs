@@ -7,7 +7,7 @@ public class NaturalDesasters : MonoBehaviour {
     [SerializeField]
     private EcoStats ecoStats;
     [SerializeField]
-    private float divisionValue, timeInterval;
+    private float divisionValue, timeInterval, destructionChance;
 
     // DEBUG
     public bool nuclear = false;
@@ -57,11 +57,34 @@ public class NaturalDesasters : MonoBehaviour {
 
     void Flood()
     {
+        GameObject[] resources = GameObject.FindGameObjectsWithTag("Resource");
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
 
+        foreach (GameObject r in resources)
+        {
+            if (Random.Range(0, 100) <= destructionChance)
+            {
+                Destroy(r);
+            }
+        }
+
+        foreach (GameObject i in items)
+        {
+            Destroy(i);
+        }
     }
     void Fire()
     {
-        
+        GameObject[] resources = GameObject.FindGameObjectsWithTag("Resource");
+
+        foreach (GameObject r in resources)
+        {
+            if (Random.Range(0, 100) <= destructionChance &&
+                r.GetComponent<ResourceAndItemInteraction>().resourceType == resourceType.tree)
+            {
+                Destroy(r);
+            }
+        }
     }
     void NuclearWinter()
     {

@@ -249,6 +249,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceAndItemInteraction.cs" />
+    <Compile Include="Assets\Scripts\UI\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarAir.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarCO2.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarGlobalTemp.cs" />

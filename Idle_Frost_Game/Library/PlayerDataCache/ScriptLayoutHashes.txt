@@ -117,7 +117,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 242d4bd3e54c9e6f7a7a0639e258d0cb Assembly-CSharp.dll:.PlayerHealth
 8f5e445028bb31cdc6e69c56d7b2b836 Assembly-CSharp.dll:.ObjectsInInteractionZone
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarGlobalTemp
-56e673c7c5d879a8c7e65bc167490499 Assembly-CSharp.dll:.ResourceAndItemInteraction
+586f315683efcb3ba8370cd531708396 Assembly-CSharp.dll:.ResourceAndItemInteraction
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -141,6 +141,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 05524b8f659e7bfe5756d1335fec24ba UnityStore.dll:UnityEngine.Store.MainThreadDispatcher
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
+ab1b2903313a41fdcaebf25ad972e5d3 Assembly-CSharp.dll:.NaturalDesasters
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DEBUG
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarRadiation
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
@@ -154,4 +155,4 @@ d895eb37b764544b0ebded9f04676c17 Assembly-CSharp.dll:.EcoStats
 3b2cf262621fd4436eb51530aa970fa2 Assembly-CSharp.dll:.Oven
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarPlayerTemp
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InputController
-957023ba59ad48f1139578c9541e7cc7 Assembly-CSharp.dll:.NaturalDesasters
+d480d198bb3f5c2733bebdd922315a66 Assembly-CSharp.dll:.CameraFollow

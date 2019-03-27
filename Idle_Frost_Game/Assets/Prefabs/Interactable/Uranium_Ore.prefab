@@ -200,6 +200,7 @@ MonoBehaviour:
   spawn: {fileID: 0}
   type: Uranium
   gainResources: 1
+  resourceType: 2
 --- !u!114 &114439818333524130
 MonoBehaviour:
   m_ObjectHideFlags: 1
