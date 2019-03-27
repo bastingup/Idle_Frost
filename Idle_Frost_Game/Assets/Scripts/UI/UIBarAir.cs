@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIBarAir : MonoBehaviour {
 
-    private int value;
+    private float value;
 
     void Start()
     {

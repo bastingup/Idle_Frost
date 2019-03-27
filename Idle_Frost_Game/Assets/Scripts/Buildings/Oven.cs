@@ -5,8 +5,6 @@ using UnityEngine;
 public class Oven : MonoBehaviour {
 
     public bool ovenActive = false;
-    [SerializeField]
-    private bool heatingPlayerUp = false;
     private GameObject player;
 
     void Start ()
@@ -18,20 +16,24 @@ public class Oven : MonoBehaviour {
     {
         if (other.tag == "PlayerCollider" && ovenActive)
         {
-            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().heatingUp = true;
-            InvokeRepeating("HeatingUpPlayer", 0.5f, 0.5f);
+            Debug.Log("Player heatin up!");
+            HeatingUpPlayer();
         }
     }
 
     private void HeatingUpPlayer()
     { 
-        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().playerTemp += 2;
+        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().playerTemp += 0.04f;
     }
 
     public void ChangeOvenStatus()
     {
         ovenActive = !ovenActive;
-        this.gameObject.transform.Find("Activated").GetComponent<Light>().enabled = ovenActive;
-        this.gameObject.transform.Find("Activated").GetComponent<SpriteRenderer>().enabled = ovenActive;
+        this.gameObject.transform.Find("Activated").gameObject.SetActive(ovenActive);
+    }
+
+    public void NuclearExplosion()
+    {
+
     }
 }

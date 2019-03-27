@@ -239,6 +239,7 @@
     <Compile Include="Assets\Scripts\Buildings\Oven.cs" />
     <Compile Include="Assets\Scripts\DEBUG\DEBUG.cs" />
     <Compile Include="Assets\Scripts\GameController\EcoStats.cs" />
+    <Compile Include="Assets\Scripts\GameController\NaturalDesasters.cs" />
     <Compile Include="Assets\Scripts\GameController\SaveGame.cs" />
     <Compile Include="Assets\Scripts\General\RenderOrder.cs" />
     <Compile Include="Assets\Scripts\Placable\Placable.cs" />

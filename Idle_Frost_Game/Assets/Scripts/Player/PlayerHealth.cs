@@ -4,28 +4,26 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
 
-    public int playerHealth = 100;
-    public int playerTemp = 70;
-    public bool heatingUp = false;
+    public float playerHealth = 100;
+    public float playerTemp = 70;
 
-	void Start ()
+    private void Update()
     {
-        InvokeRepeating("CheckTempAndDecreaseHealth", 0.5f, 0.5f);
-	}
+        CheckTempAndDecreaseHealth();
+        AvoidValuesOutOfRange();
+    }
 
     void CheckTempAndDecreaseHealth()
     {
-        if (playerTemp < 15)
+        if (playerTemp < 10)
         {
-            playerHealth -= 2;
+            playerHealth -= 0.001f;
         }
-        else if (playerTemp > 85)
+        else if (playerTemp > 90)
         {
-            playerHealth -= 2;
+            playerHealth -= 0.001f;
         }
-        playerTemp -= 1;
-        
-        AvoidValuesOutOfRange();
+        playerTemp -= 0.01f;
     }
 
     void AvoidValuesOutOfRange()

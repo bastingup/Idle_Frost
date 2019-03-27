@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIBarPlayerTemp : MonoBehaviour {
 
-    private int value;
+    private float value;
 
     void Start () {
         value = GameObject.Find("Player").GetComponent<PlayerHealth>().playerTemp;

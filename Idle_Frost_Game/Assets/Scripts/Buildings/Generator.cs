@@ -6,11 +6,25 @@ using UnityEngine.UI;
 public class Generator : MonoBehaviour {
 
     private bool guiTrue = false;
+
     [SerializeField]
-    private int energyPerWood, energyPerCoal, energyPerRenew, energyPerUranium, energyInGenerator, co2PerWood, co2PerCoal, co2PerRenew, co2PerUranium;
+    private int energyPerWood,
+                energyPerCoal,
+                energyPerRenew,
+                energyPerUranium,
+                energyInGenerator;
+                
+    [SerializeField]
+    private float energyDeductionInterval,
+                  co2PerWood,
+                  co2PerCoal,
+                  co2PerRenew,
+                  co2PerUranium,
+                  pollutionPerWood,
+                  pollutionPerCoal;
+
+    [SerializeField]
     private GameObject oven;
-    [SerializeField]
-    private float energyDeductionInterval;
     private CircleCollider2D triggerArea;
 
     [SerializeField]
@@ -19,7 +33,7 @@ public class Generator : MonoBehaviour {
     void Start ()
     {
         triggerArea = this.GetComponent<CircleCollider2D>();
-        InvokeRepeating("DeductEnergy", 1.0f, 1.0f);
+        InvokeRepeating("DeductEnergy", 1.0f, energyDeductionInterval);
 
         fuelWithWood.onClick.AddListener(FuelWithWood);
         fuelWithCoal.onClick.AddListener(FuelWithCoal);
@@ -45,18 +59,39 @@ public class Generator : MonoBehaviour {
     // Functions to deduct resources from the player inventory and fuel up the generator
     private void FuelWithWood()
     {
-        // Deduct resource from Player
-        GameObject.FindWithTag("Player").GetComponent<PlayerInventory>().wood -= 1;
+        PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
+        if (inventory.wood > 0)
+        {
+            // Deduct resource from Player
+            inventory.wood -= 1;
 
-        // Change eco stats after burning
-        GameObject.FindWithTag("GameController").GetComponent<EcoStats>().co2Value += co2PerWood;
+            // Change eco stats after burning
+            GameObject.FindWithTag("GameController").GetComponent<EcoStats>().co2Value += co2PerWood;
 
-        // Change energy in this generator
-        energyInGenerator += energyPerWood;
+            // Change energy in this generator
+            HigherEnergy(energyPerWood);
+
+            // Pollute the air
+            PolluteAir(pollutionPerWood);
+        }
     }
     private void FuelWithCoal()
     {
+        PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
+        if (inventory.coal > 0)
+        {
+            // Deduct resource from Player
+            inventory.coal -= 1;
 
+            // Change eco stats after burning
+            GameObject.FindWithTag("GameController").GetComponent<EcoStats>().co2Value += co2PerCoal;
+
+            // Change energy in this generator
+            HigherEnergy(energyPerCoal);
+
+            // Pollute the air
+            PolluteAir(pollutionPerCoal);
+        }
     }
     private void FuelWithRenewables()
     {
@@ -64,13 +99,35 @@ public class Generator : MonoBehaviour {
     }
     private void FuelWithUranium()
     {
+        PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
+        if (inventory.uranium > 0)
+        {
+            // Deduct resource from Player
+            inventory.uranium -= 1;
 
+            // Change eco stats after burning
+            GameObject.FindWithTag("GameController").GetComponent<EcoStats>().co2Value += co2PerUranium;
+
+            // Change energy in this generator
+            HigherEnergy(energyPerUranium);
+
+            // -- No air pollution through uranium --
+        }
+    }
+
+    // Methods for Energy and Air
+    private void HigherEnergy(int i)
+    {
+        energyInGenerator += i;
+    }
+    private void PolluteAir(float j)
+    {
+        GameObject.FindWithTag("GameController").GetComponent<EcoStats>().airPollution += j;
     }
 
     // Function to deduct energy over time
     private void DeductEnergy()
     {
-        oven = GameObject.FindWithTag("Oven");
         if (energyInGenerator > 0)
         {
             energyInGenerator -= 1;

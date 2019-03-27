@@ -86,8 +86,8 @@ public class SaveGame : MonoBehaviour {
         if (PlayerPrefs.GetString("playerHealth") != "")
         {
             EcoStats ecoStats = GameObject.FindWithTag("GameController").GetComponent<EcoStats>();
-            int.TryParse(PlayerPrefs.GetString(("co2")), out ecoStats.co2Value);
-            int.TryParse(PlayerPrefs.GetString(("globalTemp")), out ecoStats.globalTempValue);
+            float.TryParse(PlayerPrefs.GetString(("co2")), out ecoStats.co2Value);
+            float.TryParse(PlayerPrefs.GetString(("globalTemp")), out ecoStats.globalTempValue);
         }
     }
 
@@ -103,8 +103,8 @@ public class SaveGame : MonoBehaviour {
         if (PlayerPrefs.GetString("playerHealth") != "")
         {
             GameObject player = GameObject.Find("Player");
-            int.TryParse(PlayerPrefs.GetString(("playerHealth")), out player.GetComponent<PlayerHealth>().playerHealth);
-            int.TryParse(PlayerPrefs.GetString(("playerTemp")), out player.GetComponent<PlayerHealth>().playerTemp);
+            float.TryParse(PlayerPrefs.GetString(("playerHealth")), out player.GetComponent<PlayerHealth>().playerHealth);
+            float.TryParse(PlayerPrefs.GetString(("playerTemp")), out player.GetComponent<PlayerHealth>().playerTemp);
         }
     }
 

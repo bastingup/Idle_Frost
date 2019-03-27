@@ -13,11 +13,6 @@ public class ResourceAndItemInteraction : MonoBehaviour {
     [SerializeField]
     private int gainResources;
 
-	void Start ()
-    {
-
-	}
-
     public void Use()
     {
         // Code for Resources
@@ -43,9 +38,12 @@ public class ResourceAndItemInteraction : MonoBehaviour {
                 case "Uranium":
                     Uranium();
                     break;
+                default:
+                    break;
             }
         }
     }
+
     private void Wood()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().wood += gainResources;
@@ -63,5 +61,6 @@ public class ResourceAndItemInteraction : MonoBehaviour {
     private void Uranium()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().uranium += gainResources;
+        Destroy(gameObject);
     }
 }
