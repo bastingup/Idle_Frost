@@ -14,7 +14,7 @@ public class NaturalDesasters : MonoBehaviour {
 
 	void Start ()
     {
-        InvokeRepeating("ChanceForDisaster", timeInterval, timeInterval);
+        InvokeRepeating("ChanceForDesaster", timeInterval, timeInterval);
 	}
 	
 	void ChanceForDesaster()

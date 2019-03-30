@@ -235,21 +235,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Buildings\Farm.cs" />
     <Compile Include="Assets\Scripts\Buildings\Generator.cs" />
     <Compile Include="Assets\Scripts\Buildings\Oven.cs" />
     <Compile Include="Assets\Scripts\DEBUG\DEBUG.cs" />
+    <Compile Include="Assets\Scripts\Environment\Lava.cs" />
+    <Compile Include="Assets\Scripts\GameController\Death.cs" />
     <Compile Include="Assets\Scripts\GameController\EcoStats.cs" />
     <Compile Include="Assets\Scripts\GameController\NaturalDesasters.cs" />
+    <Compile Include="Assets\Scripts\GameController\PrefabHolder.cs" />
     <Compile Include="Assets\Scripts\GameController\SaveGame.cs" />
     <Compile Include="Assets\Scripts\General\RenderOrder.cs" />
+    <Compile Include="Assets\Scripts\General\SetRenderOrder.cs" />
     <Compile Include="Assets\Scripts\Placable\Placable.cs" />
     <Compile Include="Assets\Scripts\Player\InputController.cs" />
     <Compile Include="Assets\Scripts\Player\InteractionPlayer.cs" />
     <Compile Include="Assets\Scripts\Player\ObjectsInInteractionZone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
+    <Compile Include="Assets\Scripts\Resources\MeteorSpawner.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceAndItemInteraction.cs" />
     <Compile Include="Assets\Scripts\UI\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\UI\UI_DeathCanvas.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarAir.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarCO2.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarGlobalTemp.cs" />

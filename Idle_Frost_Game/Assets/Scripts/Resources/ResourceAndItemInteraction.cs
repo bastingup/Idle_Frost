@@ -45,6 +45,9 @@ public class ResourceAndItemInteraction : MonoBehaviour {
                 case "Uranium":
                     Uranium();
                     break;
+                case "Meteorium":
+                    Meteorium();
+                    break;
                 default:
                     break;
             }
@@ -68,6 +71,11 @@ public class ResourceAndItemInteraction : MonoBehaviour {
     private void Uranium()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().uranium += gainResources;
+        Destroy(gameObject);
+    }
+    private void Meteorium()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().meteorium += gainResources;
         Destroy(gameObject);
     }
 }

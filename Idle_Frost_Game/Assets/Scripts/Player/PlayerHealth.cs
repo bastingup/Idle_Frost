@@ -30,7 +30,12 @@ public class PlayerHealth : MonoBehaviour {
     {
         if (playerTemp < 0) { playerTemp = 0; }
         if (playerTemp > 100) { playerTemp = 100; }
-        if (playerHealth < 0) { playerHealth = 0; }
+        if (playerHealth < 0) { Death(); }
         if (playerHealth > 100) { playerHealth = 100; }
+    }
+
+    void Death()
+    {
+        FindObjectOfType<Death>().TriggerDeath();
     }
 }

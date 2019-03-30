@@ -77,6 +77,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+00ef9f67c7ae4fc005d2d8df5cbd3627 Assembly-CSharp.dll:.Death
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -89,6 +90,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+7b4c1fede8dbff3b55467f67881e7899 Assembly-CSharp.dll:.MeteorSpawner
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -112,10 +114,14 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 50667894c33b478dc38ae949114bb1e8 Assembly-CSharp.dll:AppStoresSupport.AppStoreSettings
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UI_DeathCanvas
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Lava
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarCO2
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarHealth
 242d4bd3e54c9e6f7a7a0639e258d0cb Assembly-CSharp.dll:.PlayerHealth
 8f5e445028bb31cdc6e69c56d7b2b836 Assembly-CSharp.dll:.ObjectsInInteractionZone
+04bf794f3072e9ec1bf15e754d3b766b Assembly-CSharp.dll:.Farm
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SetRenderOrder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarGlobalTemp
 586f315683efcb3ba8370cd531708396 Assembly-CSharp.dll:.ResourceAndItemInteraction
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -132,9 +138,9 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-4b4c2a54538a43a5085d25e95239d587 Assembly-CSharp.dll:.PlayerInventory
+a6165b0ea6ac02a289cd0307a449ae75 Assembly-CSharp.dll:.PlayerInventory
 145da49bb0d2844c5256fd07b0aa4348 Assembly-CSharp.dll:.SaveGame
-173d666123fd7193cf215c3b1a595d95 Assembly-CSharp.dll:.Generator
+086c3dd7764a67b57158da8dfc09f9a6 Assembly-CSharp.dll:.Generator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 2a56361227def9f56c2cf57a88b32f4d UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -153,6 +159,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 d895eb37b764544b0ebded9f04676c17 Assembly-CSharp.dll:.EcoStats
 3b2cf262621fd4436eb51530aa970fa2 Assembly-CSharp.dll:.Oven
+d480d198bb3f5c2733bebdd922315a66 Assembly-CSharp.dll:.CameraFollow
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarPlayerTemp
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InputController
-d480d198bb3f5c2733bebdd922315a66 Assembly-CSharp.dll:.CameraFollow
+b4f59afa6cd085a96e1547ca12dbff71 Assembly-CSharp.dll:.PrefabHolder

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour {
  
-    public int coal, seeds, renewables, uranium, wood, money;
+    public int coal, seeds, renewables, uranium, meteorium, wood, money;
 
     private void OnGUI()
     {

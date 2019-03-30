@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Generator : MonoBehaviour {
 
-    private bool guiTrue = false;
+    private bool guiTrue = false, inReach = false;
 
     [SerializeField]
     private int energyPerWood,
                 energyPerCoal,
                 energyPerRenew,
                 energyPerUranium,
+                energyPerMeteorium,
                 energyInGenerator;
                 
     [SerializeField]
@@ -21,38 +22,48 @@ public class Generator : MonoBehaviour {
                   co2PerRenew,
                   co2PerUranium,
                   pollutionPerWood,
-                  pollutionPerCoal;
+                  pollutionPerCoal,
+                  pollutionPerMeteorium;
 
     [SerializeField]
     private GameObject oven;
-    private CircleCollider2D triggerArea;
 
     [SerializeField]
-    private Button fuelWithWood, fuelWithCoal, fuelWithRenew, fuelWithUranium;
+    private Button fuelWithWood, fuelWithCoal, fuelWithRenew, fuelWithUranium, fuelWithMeteorium;
 
     void Start ()
     {
-        triggerArea = this.GetComponent<CircleCollider2D>();
+        this.GetComponent<CircleCollider2D>();
         InvokeRepeating("DeductEnergy", 1.0f, energyDeductionInterval);
 
         fuelWithWood.onClick.AddListener(FuelWithWood);
         fuelWithCoal.onClick.AddListener(FuelWithCoal);
         fuelWithRenew.onClick.AddListener(FuelWithRenewables);
         fuelWithUranium.onClick.AddListener(FuelWithUranium);
+        fuelWithMeteorium.onClick.AddListener(FuelWithMeteorium);
 	}
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerCollider")
         {
             guiTrue = !guiTrue;
+            inReach = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerCollider")
         {
             guiTrue = !guiTrue;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("PlayerCollider"))
+        {
+            inReach = true;
+            Debug.Log("in reach generaot");
         }
     }
 
@@ -60,7 +71,7 @@ public class Generator : MonoBehaviour {
     private void FuelWithWood()
     {
         PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
-        if (inventory.wood > 0)
+        if (inventory.wood > 0 && inReach)
         {
             // Deduct resource from Player
             inventory.wood -= 1;
@@ -78,7 +89,7 @@ public class Generator : MonoBehaviour {
     private void FuelWithCoal()
     {
         PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
-        if (inventory.coal > 0)
+        if (inventory.coal > 0 && inReach)
         {
             // Deduct resource from Player
             inventory.coal -= 1;
@@ -100,7 +111,7 @@ public class Generator : MonoBehaviour {
     private void FuelWithUranium()
     {
         PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
-        if (inventory.uranium > 0)
+        if (inventory.uranium > 0 && inReach)
         {
             // Deduct resource from Player
             inventory.uranium -= 1;
@@ -112,6 +123,21 @@ public class Generator : MonoBehaviour {
             HigherEnergy(energyPerUranium);
 
             // -- No air pollution through uranium --
+        }
+    }
+    private void FuelWithMeteorium()
+    {
+        PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
+        if (inventory.meteorium > 0 && inReach)
+        {
+            // Deduct resource from Player
+            inventory.meteorium -= 1;
+
+            // Change energy in this generator
+            HigherEnergy(energyPerMeteorium);
+
+            // Pollute the air
+            PolluteAir(pollutionPerMeteorium);
         }
     }
 
