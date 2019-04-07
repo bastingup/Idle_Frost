@@ -6,7 +6,7 @@ public class EcoStats : MonoBehaviour
 {
     [SerializeField]
     private PlayerHealth playerHealth;
-    public float co2Value = 60, globalTempValue = 40, airPollution = 20, radiation = 5, changeRate;
+    public float co2Value = 50, globalTempValue = 40, airPollution = 20, radiation = 5, changeRate;
 
     private void Update()
     {
@@ -18,24 +18,18 @@ public class EcoStats : MonoBehaviour
 
     void UpdateGlobalTemp()
     {
-        globalTempValue += ((co2Value - 50) * changeRate);
+        globalTempValue += ((co2Value - 20) * changeRate);
     }
 
     void UpdatePlayerHealth()
     {
-        playerHealth.playerHealth -= (airPollution * changeRate);
+        playerHealth.playerHealth -= (airPollution * (changeRate * 0.1f));
     }
 
     void UpdatePlayerTemp()
     {
-        if (playerHealth.playerTemp - 50 < 0)
-        {
-            playerHealth.playerTemp += ((globalTempValue - 50) * changeRate);
-        }
-        else
-        {
-            playerHealth.playerTemp += ((globalTempValue - 50) *(-changeRate));
-        }
+        playerHealth.playerTemp += ((globalTempValue - 20) * (changeRate));
+
     }
     
     void CheckOutOfBounds()

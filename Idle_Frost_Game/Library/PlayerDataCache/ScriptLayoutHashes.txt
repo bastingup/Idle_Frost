@@ -141,6 +141,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 a6165b0ea6ac02a289cd0307a449ae75 Assembly-CSharp.dll:.PlayerInventory
 145da49bb0d2844c5256fd07b0aa4348 Assembly-CSharp.dll:.SaveGame
 086c3dd7764a67b57158da8dfc09f9a6 Assembly-CSharp.dll:.Generator
+b4f59afa6cd085a96e1547ca12dbff71 Assembly-CSharp.dll:.PrefabHolder
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 2a56361227def9f56c2cf57a88b32f4d UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -162,4 +163,3 @@ d895eb37b764544b0ebded9f04676c17 Assembly-CSharp.dll:.EcoStats
 d480d198bb3f5c2733bebdd922315a66 Assembly-CSharp.dll:.CameraFollow
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIBarPlayerTemp
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InputController
-b4f59afa6cd085a96e1547ca12dbff71 Assembly-CSharp.dll:.PrefabHolder

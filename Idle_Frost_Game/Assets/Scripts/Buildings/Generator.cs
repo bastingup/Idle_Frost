@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class Generator : MonoBehaviour {
 
     private bool guiTrue = false, inReach = false;
+    private TextMesh text;
 
     [SerializeField]
     private int energyPerWood,
                 energyPerCoal,
                 energyPerRenew,
                 energyPerUranium,
-                energyPerMeteorium,
-                energyInGenerator;
+                energyPerMeteorium;
                 
+    public int energyInGenerator;
+
     [SerializeField]
     private float energyDeductionInterval,
                   co2PerWood,
@@ -36,12 +38,19 @@ public class Generator : MonoBehaviour {
         this.GetComponent<CircleCollider2D>();
         InvokeRepeating("DeductEnergy", 1.0f, energyDeductionInterval);
 
+        text = GetComponentInChildren<TextMesh>();
+
         fuelWithWood.onClick.AddListener(FuelWithWood);
         fuelWithCoal.onClick.AddListener(FuelWithCoal);
         fuelWithRenew.onClick.AddListener(FuelWithRenewables);
         fuelWithUranium.onClick.AddListener(FuelWithUranium);
         fuelWithMeteorium.onClick.AddListener(FuelWithMeteorium);
 	}
+
+    private void FixedUpdate()
+    {
+        text.text = "There is " + (Mathf.Round(energyInGenerator)).ToString() + " energy left.";
+    }
 
     private void OnTriggerExit2D(Collider2D other)
     {

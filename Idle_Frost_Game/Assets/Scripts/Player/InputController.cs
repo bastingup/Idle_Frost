@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
-    private float speed = 0.001f;
+    private float speed = 0.001f, inputArea = 0.12f;
     private CharacterController character;
     private Vector2 touchInitialPosition;
 
@@ -18,8 +18,8 @@ public class InputController : MonoBehaviour {
         if (Input.touchCount > 0)
         {
             // Check wether the touch input is given at the center 76% of the screen on the x axis
-            if (Input.GetTouch(0).position.x > Screen.width * 0.12f &&
-                Input.GetTouch(0).position.x < Screen.width * 0.88f)
+            if (Input.GetTouch(0).position.x > Screen.width * inputArea &&
+                Input.GetTouch(0).position.x < Screen.width * (1f - inputArea))
             {
                 // Movement
                 if (Input.GetTouch(0).phase == TouchPhase.Began)

@@ -17,6 +17,7 @@ public class SaveGame : MonoBehaviour {
     // Load the scene and the save file at beginning of session
     private void Start()
     {
+        //PlayerPrefs.DeleteAll();
         LoadGame();
         saveButton.onClick.AddListener(Save);
         loadButton.onClick.AddListener(LoadGame); 
@@ -29,7 +30,10 @@ public class SaveGame : MonoBehaviour {
         SaveItems();
         SaveGlobalStats();
         SavePlayerprefs();
-        //SaveResources();
+        SaveResources();
+        WriteSaved();
+        SaveEnergy();
+        SavePlayerPosition();
         QuitGame();
     }
     void LoadGame()
@@ -38,7 +42,26 @@ public class SaveGame : MonoBehaviour {
         LoadItems();
         LoadGlobalStats();
         LoadPlayerStats();
-        //LoadResources();
+        LoadResources();
+        LoadPlayerPosition();
+        LoadEnergy();
+    }
+
+    bool CheckForSaved()
+    {
+        if (PlayerPrefs.GetString("saved") != "saved")
+        {
+            PlayerPrefs.SetString("saved", "unsaved");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    void WriteSaved()
+    {
+        PlayerPrefs.SetString("saved", "saved");
     }
 
     // Functions to save and load the current and last time played
@@ -60,6 +83,27 @@ public class SaveGame : MonoBehaviour {
         Debug.Log(lastTime.ToString());
 
         deltaSeconds = (int)Mathf.Round((float)((lastTime - DateTime.Now).TotalSeconds));
+    }
+
+    private void SaveEnergy()
+    {
+        PlayerPrefs.SetInt("energy", FindObjectOfType<Generator>().energyInGenerator);
+    }
+    private void LoadEnergy()
+    {
+        FindObjectOfType<Generator>().energyInGenerator = PlayerPrefs.GetInt("energy");
+    }
+
+    private void SavePlayerPosition()
+    {
+        PlayerPrefs.SetFloat("playerX", GameObject.FindGameObjectWithTag("Player").transform.position.x);
+        PlayerPrefs.SetFloat("playerY", GameObject.FindGameObjectWithTag("Player").transform.position.y);
+    }
+    private void LoadPlayerPosition()
+    {
+        Vector2 playerPositoin = new Vector2(PlayerPrefs.GetFloat("playerX"),
+                                             PlayerPrefs.GetFloat("playerY"));
+        GameObject.FindGameObjectWithTag("Player").transform.position = playerPositoin;
     }
 
     private void SaveItems()
@@ -86,18 +130,27 @@ public class SaveGame : MonoBehaviour {
     private void SaveGlobalStats()
     {
         EcoStats ecoStats = GameObject.FindWithTag("GameController").GetComponent<EcoStats>();
-        PlayerPrefs.SetString("co2", ecoStats.co2Value.ToString());
-        PlayerPrefs.SetString("globalTemp", ecoStats.globalTempValue.ToString());
-        PlayerPrefs.SetString("airPollution", ecoStats.airPollution.ToString());
-        PlayerPrefs.SetString("radiation", ecoStats.radiation.ToString());
+
+        PlayerPrefs.SetFloat("co2", ecoStats.co2Value);
+        PlayerPrefs.SetFloat("globalTemp", ecoStats.globalTempValue);
+        PlayerPrefs.SetFloat("airPollution", ecoStats.airPollution);
+        PlayerPrefs.SetFloat("radiation", ecoStats.radiation);
     }
     private void LoadGlobalStats()
     {
         EcoStats ecoStats = GameObject.FindWithTag("GameController").GetComponent<EcoStats>();
-        float.TryParse(PlayerPrefs.GetString(("co2")), out ecoStats.co2Value);
-        float.TryParse(PlayerPrefs.GetString(("globalTemp")), out ecoStats.globalTempValue);
-        float.TryParse(PlayerPrefs.GetString(("airPollution")), out ecoStats.airPollution);
-        float.TryParse(PlayerPrefs.GetString(("radiation")), out ecoStats.radiation);
+
+        if (CheckForSaved())
+        {
+            ecoStats.co2Value = PlayerPrefs.GetFloat("co2");
+            ecoStats.globalTempValue = PlayerPrefs.GetFloat("globalTemp");
+            ecoStats.airPollution = PlayerPrefs.GetFloat("airPollution");
+            ecoStats.radiation = PlayerPrefs.GetFloat("radiation");
+        }
+        else
+        {
+            ecoStats.co2Value = 20; ecoStats.globalTempValue = 20; ecoStats.airPollution = 5; ecoStats.radiation = 3;
+        }
     }
 
     private void SavePlayerStats()
@@ -117,29 +170,36 @@ public class SaveGame : MonoBehaviour {
         }
     }
     
-    // TODO Insanely inefficient - needs a lot of work
     private void SaveResources()
     {
         GameObject[] resources = GameObject.FindGameObjectsWithTag("Resource");
-        int count = resources.Length;
-        int n = 0;
-
-        PlayerPrefs.SetInt("resourceCount", count);
+        PlayerPrefs.SetInt("resourceCount", resources.Length);
     }
     private void LoadResources()
     {
-        // If there is a save file, clear the scene and place the resources saved
-        // Don't compare and/or delete only the non safed objects, as comparing floats can be tricky and overlappy
-        if (PlayerPrefs.GetString("resourceCount") != null)
-        {
-            int count = PlayerPrefs.GetInt("resourceCount");
-            int n = 0;
+        int count;
 
-            while (n < count)
-            {
-                Vector2 position = new Vector2(UnityEngine.Random.Range(0, 100), UnityEngine.Random.Range(0, 100));
-                Instantiate(GetComponent<PrefabHolder>().tree, position, new Quaternion(0, 0, 0, 1), null);
-            }
+        if (CheckForSaved())
+        {
+            count = PlayerPrefs.GetInt("resourceCount");
+        }
+        else
+        {
+            count = 4200;
+        }
+
+        InstantiateResources(count);
+    }
+
+    void InstantiateResources(int count)
+    {
+        GameObject tree = GetComponent<PrefabHolder>().tree;
+
+        for (int n = 0; n <= count; n++)
+        {
+            Vector2 position = new Vector2(UnityEngine.Random.Range(0, 500), UnityEngine.Random.Range(0, 500));
+            Instantiate(tree, position, new Quaternion(0, 0, 0, 1));
+            n++;
         }
     }
 
