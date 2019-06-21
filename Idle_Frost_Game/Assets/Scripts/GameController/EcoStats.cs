@@ -8,6 +8,9 @@ public class EcoStats : MonoBehaviour
     private PlayerHealth playerHealth;
     public float co2Value = 50, globalTempValue = 40, airPollution = 20, radiation = 5, changeRate;
 
+    [SerializeField]
+    private Light radiationLight;
+
     private void Update()
     {
         CheckOutOfBounds();
@@ -18,7 +21,7 @@ public class EcoStats : MonoBehaviour
 
     void UpdateGlobalTemp()
     {
-        globalTempValue += ((co2Value - 20) * changeRate);
+        globalTempValue += ((co2Value - 20) * (changeRate * 0.1f));
     }
 
     void UpdatePlayerHealth()
@@ -43,5 +46,6 @@ public class EcoStats : MonoBehaviour
     void RadiateEnvironment()
     {
         // TODO Radiate Environment
+        radiationLight.intensity = radiation / 1000;
     }
 }

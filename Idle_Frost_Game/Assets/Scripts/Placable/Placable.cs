@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Placable : MonoBehaviour {
 
-	// Use this for initialization
+    [SerializeField]
+    private GameObject campFire,
+                       tree;
+                       
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
 	}

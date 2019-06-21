@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Idle_Frost_Game", "Idle_Frost_Game.csproj", "{055FF290-1297-6344-64A2-C06D46F99FE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{8B7EF639-85A6-2E26-444C-740DB053AF03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{055FF290-1297-6344-64A2-C06D46F99FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{055FF290-1297-6344-64A2-C06D46F99FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{055FF290-1297-6344-64A2-C06D46F99FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{055FF290-1297-6344-64A2-C06D46F99FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B7EF639-85A6-2E26-444C-740DB053AF03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7EF639-85A6-2E26-444C-740DB053AF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7EF639-85A6-2E26-444C-740DB053AF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7EF639-85A6-2E26-444C-740DB053AF03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

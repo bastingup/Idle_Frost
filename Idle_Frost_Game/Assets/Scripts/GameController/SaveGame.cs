@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveGame : MonoBehaviour {
 
     [SerializeField]
-    private Button saveButton;
-    [SerializeField]
-    private Button loadButton;
+    private Button saveButton, loadButton;
 
     private DateTime lastTime;
     public int deltaSeconds;
@@ -20,7 +20,7 @@ public class SaveGame : MonoBehaviour {
         //PlayerPrefs.DeleteAll();
         LoadGame();
         saveButton.onClick.AddListener(Save);
-        loadButton.onClick.AddListener(LoadGame); 
+        loadButton.onClick.AddListener(LoadGame);
     }
 
     // Save and load functions containing the save/load functions for different aspects
@@ -34,17 +34,24 @@ public class SaveGame : MonoBehaviour {
         WriteSaved();
         SaveEnergy();
         SavePlayerPosition();
+        SaveFarm();
         QuitGame();
     }
     void LoadGame()
     {
-        LoadTime();
-        LoadItems();
-        LoadGlobalStats();
-        LoadPlayerStats();
-        LoadResources();
-        LoadPlayerPosition();
-        LoadEnergy();
+        // TODO load resources doubles resources
+        if (CheckForSaved())
+        {
+            DestroyAllResources();
+            LoadTime();
+            LoadItems();
+            LoadGlobalStats();
+            LoadPlayerStats();
+            LoadPlayerPosition();
+            LoadEnergy();
+            LoadFarm();
+            LoadResources();
+        }
     }
 
     bool CheckForSaved()
@@ -57,6 +64,25 @@ public class SaveGame : MonoBehaviour {
         else
         {
             return true;
+        }
+    }
+    void DestroyAllResources()
+    {
+        ResourceAndItemInteraction[] resourceArray = GameObject.FindObjectsOfType<ResourceAndItemInteraction>();
+        for (int i = 0; i < resourceArray.Length; i++)
+        {
+            Destroy(resourceArray[i].gameObject);
+        }
+    }
+    bool CheckForBinaryFormatterFile()
+    {
+        if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     void WriteSaved()
@@ -92,6 +118,17 @@ public class SaveGame : MonoBehaviour {
     private void LoadEnergy()
     {
         FindObjectOfType<Generator>().energyInGenerator = PlayerPrefs.GetInt("energy");
+    }
+
+    private void SaveFarm()
+    {
+        PlayerPrefs.SetFloat("cooldownFarm", FindObjectOfType<Farm>().cooldownTime);
+    }
+    private void LoadFarm()
+    {
+        Farm farm = FindObjectOfType<Farm>();
+        farm.cooldownTime = PlayerPrefs.GetFloat("cooldownFarm");
+        StartCoroutine(farm.CoolDown((int)farm.cooldownTime));
     }
 
     private void SavePlayerPosition()
@@ -172,35 +209,86 @@ public class SaveGame : MonoBehaviour {
     
     private void SaveResources()
     {
-        GameObject[] resources = GameObject.FindGameObjectsWithTag("Resource");
-        PlayerPrefs.SetInt("resourceCount", resources.Length);
+        // Binary formatter and file for saving
+        BinaryFormatter bf = new BinaryFormatter();
+        if (CheckForBinaryFormatterFile())
+        {
+            File.Delete(Application.persistentDataPath + "/savedGames.gd");
+        }
+        FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd");
+
+        // All resources in the scene
+        ResourceAndItemInteraction[] resourceArray = GameObject.FindObjectsOfType<ResourceAndItemInteraction>();
+        List<string> resourceEnumAndPosition = new List<string>();
+
+        string nameAndPos;
+
+        for (int i = 0; i < resourceArray.Length; i++)
+        {
+            nameAndPos = resourceArray[i].GetComponent<ResourceAndItemInteraction>().resourceName.ToString()
+                         + "_" +
+                         resourceArray[i].transform.position.ToString();
+            resourceEnumAndPosition.Add(nameAndPos);
+        }
+
+        // Save array to file
+        bf.Serialize(file, resourceEnumAndPosition);
+        file.Close();
+
     }
     private void LoadResources()
     {
-        int count;
-
-        if (CheckForSaved())
+        // If binary formatter file exists, load all resources
+        if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
         {
-            count = PlayerPrefs.GetInt("resourceCount");
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
+            List<string> resourceList = (List<string>)bf.Deserialize(file);
+            file.Close();
+            InstantiateResources(resourceList);
         }
-        else
-        {
-            count = 4200;
-        }
-
-        InstantiateResources(count);
     }
-
-    void InstantiateResources(int count)
+    void InstantiateResources(List<string> resources)
     {
-        GameObject tree = GetComponent<PrefabHolder>().tree;
-
-        for (int n = 0; n <= count; n++)
+        for (int n = 0; n < resources.Count; n++)
         {
-            Vector2 position = new Vector2(UnityEngine.Random.Range(0, 500), UnityEngine.Random.Range(0, 500));
-            Instantiate(tree, position, new Quaternion(0, 0, 0, 1));
-            n++;
+            string name = resources[n].Substring(0, resources[n].IndexOf("_"));
+            int length = resources[n].IndexOf(")") - resources[n].IndexOf("(") - 1;
+            string positionString = resources[n].Substring(resources[n].IndexOf("(") + 1, length); 
+            Instantiate(DeterminePrefab(name), ConvertNameToVector(positionString), new Quaternion(0, 0, 0, 1));
         }
+    }
+    GameObject DeterminePrefab(string name)
+    {
+        // TODO get rid of the switch asap and automate the finding of the prefabs
+        switch (name)
+        {
+            case "tree":
+                return GetComponent<PrefabHolder>().tree;
+                break;
+            case "uranium":
+                return GetComponent<PrefabHolder>().uranium;
+                break;
+            case "wood":
+                return GetComponent<PrefabHolder>().wood;
+                break;
+            case "regularMeteor":
+                return GetComponent<PrefabHolder>().regularMeteor;
+                break;
+            case "rareMeteor":
+                return GetComponent<PrefabHolder>().rareMeteor;
+                break;
+        }
+        return null;
+    }
+    Vector2 ConvertNameToVector(string position)
+    {
+        string[] coordinates = position.Split(',');
+        float x, y;
+        float.TryParse(coordinates[0], out x);
+        float.TryParse(coordinates[1], out y);
+        Vector2 vector = new Vector2(x, y);
+        return vector;
     }
 
     private void SavePlayerprefs()

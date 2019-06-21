@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class InteractionPlayer : MonoBehaviour {
 
     [SerializeField]
-    private Button interactButton;
-    [SerializeField]
-    private Button infoButton;
+    private Button interactButton, infoButton;
     private GameObject interactionTarget;
+    private InputController input;
 
-
-
-	void Start () {
-        // Add the button that is causing the function "Interaction" and others
+	void Start ()
+    {
         interactButton.onClick.AddListener(Interaction);
         infoButton.onClick.AddListener(Information);
+        // Sprint button is working with UI manager
+
+        input = this.GetComponent<InputController>();
 	}
 
     void Interaction()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
-    private float speed = 0.001f, inputArea = 0.12f;
+    public float speed = 0.001f, inputArea = 0.12f;
     private CharacterController character;
     private Vector2 touchInitialPosition;
 
@@ -41,6 +41,11 @@ public class InputController : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void Sprint()
+    {
+
     }
 
     Vector2 CheckMaximum(Vector2 vec)

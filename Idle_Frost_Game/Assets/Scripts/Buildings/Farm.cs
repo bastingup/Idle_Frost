@@ -13,8 +13,9 @@ public class Farm : MonoBehaviour {
     [SerializeField]
     private float co2PerVegan,
                   co2PerVeggi,
-                  co2PerMeat,
-                  cooldownTime;
+                  co2PerMeat;
+                  
+    public float cooldownTime;
 
     [SerializeField]
     private int moneyPerVegan,
@@ -38,11 +39,15 @@ public class Farm : MonoBehaviour {
         {
             cooldownTime -= Time.deltaTime;
             text.text = "Available in " + (Mathf.Round(cooldownTime)).ToString() + " seconds.";
+            if (cooldownTime <= 0)
+            {
+                available = true;
+            }
         }
         else
         {
             text.text = "Ready for use!";
-        }
+        } 
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -108,7 +113,12 @@ public class Farm : MonoBehaviour {
         FindObjectOfType<EcoStats>().co2Value += value;
     }
 
-    IEnumerator CoolDown(int wait)
+    void AssignCooldonw()
+    {
+        cooldownTime = timeToWait;
+    }
+
+    public IEnumerator CoolDown(int wait)
     {
         cooldownTime = wait;
         yield return new WaitForSeconds(wait);

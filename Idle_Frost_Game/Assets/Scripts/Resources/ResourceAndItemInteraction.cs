@@ -7,51 +7,68 @@ public enum resourceType
     tree, coal, uranium, item
 }
 
+public enum resourceName
+{
+    tree, coal, renewable, uranium, regularMeteor, rareMeteor
+}
+
 public class ResourceAndItemInteraction : MonoBehaviour {
 
     [SerializeField]
     private bool isItem;
+
     [SerializeField]
-    private GameObject spawn;
-    [SerializeField]
-    private string type;
+    private GameObject itemToSpawn;
+
     [SerializeField]
     private int gainResources;
 
     public resourceType resourceType;
+    public resourceName resourceName;
 
     public void Use()
     {
-        // Code for Resources
+        // Code for Resources - Always destroy and spawn an item
         if (!isItem)
         {
-            Instantiate(spawn, this.transform.position, new Quaternion());
+            SpawnItem(itemToSpawn);
             Destroy(gameObject);
         }
         // Code for items
         else
         {
-            switch (type)
+            switch (resourceName)
             {
-                case "Wood":
+                case resourceName.tree:
                     Wood();
                     break;
-                case "Coal":
+                case resourceName.coal:
                     Coal();
                     break;
-                case "Renewable":
+                case resourceName.renewable:
                     Renewable();
                     break;
-                case "Uranium":
+                case resourceName.uranium:
                     Uranium();
                     break;
-                case "Meteorium":
+                case resourceName.rareMeteor:
+                    Meteorium();
+                    break;
+                case resourceName.regularMeteor:
                     Meteorium();
                     break;
                 default:
                     break;
             }
         }
+    }
+    
+    private void SpawnItem(GameObject item)
+    {
+        Vector2 spawnPosition = new Vector2(Random.Range(this.transform.position.x - 1, this.transform.position.x + 1),
+                                            Random.Range(this.transform.position.y - 1, this.transform.position.y + 1));
+
+        Instantiate(item, spawnPosition, new Quaternion());
     }
 
     private void Wood()
