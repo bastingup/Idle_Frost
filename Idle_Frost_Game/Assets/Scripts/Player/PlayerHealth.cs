@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
 
-    public float playerHealth = 100;
-    public float playerTemp = 70;
+    public float playerHealth = 100f, playerTemp = 70f, healthReduction = 0.001f, tempReduction = 0.02f;
 
     private void Update()
     {
@@ -17,13 +16,13 @@ public class PlayerHealth : MonoBehaviour {
     {
         if (playerTemp < 10)
         {
-            playerHealth -= 0.001f;
+            playerHealth -= healthReduction;
         }
         else if (playerTemp > 90)
         {
-            playerHealth -= 0.001f;
+            playerHealth -= healthReduction;
         }
-        playerTemp -= 0.02f;
+        playerTemp -= tempReduction;
     }
 
     void AvoidValuesOutOfRange()

@@ -80,7 +80,7 @@ public class NaturalDesasters : MonoBehaviour {
         foreach (GameObject r in resources)
         {
             if (Random.Range(0, 100) <= destructionChance &&
-                r.GetComponent<ResourceAndItemInteraction>().resourceType == resourceType.tree)
+                r.GetComponent<ResourceAndItemInteraction>().resourceName == resourceName.tree)
             {
                 Destroy(r);
             }

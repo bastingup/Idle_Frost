@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Oven : MonoBehaviour {
 
+    private float playerHeatUp;
     public bool ovenActive = false;
     private GameObject player;
 
     void Start ()
     {
         this.transform.Find("Area").GetComponent<CircleCollider2D>();
+        playerHeatUp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().tempReduction * 2;
 	}
 
     void OnTriggerStay2D(Collider2D other)
@@ -23,7 +25,7 @@ public class Oven : MonoBehaviour {
 
     private void HeatingUpPlayer()
     { 
-        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().playerTemp += 0.04f;
+        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().playerTemp += playerHeatUp;
     }
 
     public void ChangeOvenStatus()

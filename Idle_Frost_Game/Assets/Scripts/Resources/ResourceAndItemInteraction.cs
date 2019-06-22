@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum resourceType
-{
-    tree, coal, uranium, item
-}
-
 public enum resourceName
 {
     tree, coal, renewable, uranium, regularMeteor, rareMeteor
@@ -23,7 +18,6 @@ public class ResourceAndItemInteraction : MonoBehaviour {
     [SerializeField]
     private int gainResources;
 
-    public resourceType resourceType;
     public resourceName resourceName;
 
     public void Use()
