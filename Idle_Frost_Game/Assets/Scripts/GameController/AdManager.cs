@@ -103,6 +103,7 @@ public class AdManager : MonoBehaviour
     
     void RewardPlayer(int i)
     {
+        // TODO make a reward system that actually makes sense
         switch (rewards[i].typeOfReward)
         {
             case Reward.Type.radiation:

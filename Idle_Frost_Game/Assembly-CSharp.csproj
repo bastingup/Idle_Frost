@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\GameController\AdManager.cs" />
     <Compile Include="Assets\Scripts\GameController\Death.cs" />
     <Compile Include="Assets\Scripts\GameController\EcoStats.cs" />
+    <Compile Include="Assets\Scripts\GameController\MainMenu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\GameController\NaturalDesasters.cs" />
     <Compile Include="Assets\Scripts\GameController\PrefabHolder.cs" />
     <Compile Include="Assets\Scripts\GameController\SaveGame.cs" />
