@@ -2,6 +2,7 @@ Android
 PlayerPath?
 D:/GithubProjects/Idle_Frost/Idle_Frost_Game/Builds/IdleFrostTestBuild.apk
 SceneListBegin?
+Assets/Scenes/MainMenu.unity
 Assets/Scenes/GameScene.unity
 SceneListEnd?
 69e3511542828a5bbb0fe2e559d057be Assembly-CSharp.dll:.Placable
@@ -203,6 +204,7 @@ b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 fd90c074ed42f42b3f13a0933a7be4bb Assembly-CSharp.dll:.PlayerHealth
 475735e3bd57f4b0ce74af1d3a85f6ca Assembly-CSharp.dll:.ObjectsInInteractionZone
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Monetization.Editor.dll:UnityEngine.Monetization.Placeholder
+57c3f6db176f078cd635685eef1cdb03 Assembly-CSharp.dll:.MainMenu
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
 228b7aaab12ae69909e4694e9ea2cb78 Assembly-CSharp.dll:.Farm
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.SetRenderOrder
