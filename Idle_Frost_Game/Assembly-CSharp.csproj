@@ -61,8 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Buildings\Campfire.cs" />
+    <Compile Include="Assets\Scripts\Buildings\EnergySystem.cs" />
     <Compile Include="Assets\Scripts\Buildings\Farm.cs" />
+    <Compile Include="Assets\Scripts\Buildings\FarmSystem.cs" />
     <Compile Include="Assets\Scripts\Buildings\Generator.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Heatsource.cs" />
     <Compile Include="Assets\Scripts\Buildings\Oven.cs" />
     <Compile Include="Assets\Scripts\DEBUG\DEBUG.cs" />
     <Compile Include="Assets\Scripts\Environment\Lava.cs" />
@@ -84,6 +88,7 @@
     <Compile Include="Assets\Scripts\Resources\MeteorSpawner.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceAndItemInteraction.cs" />
     <Compile Include="Assets\Scripts\UI\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\UI\Sprint.cs" />
     <Compile Include="Assets\Scripts\UI\UI_DeathCanvas.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarAir.cs" />
     <Compile Include="Assets\Scripts\UI\UIBarCO2.cs" />

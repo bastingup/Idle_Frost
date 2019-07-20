@@ -30,22 +30,14 @@ public class Generator : MonoBehaviour {
     [SerializeField]
     private GameObject oven;
 
-    [SerializeField]
-    private Button fuelWithWood, fuelWithCoal, fuelWithRenew, fuelWithUranium, fuelWithMeteorium;
-
     void Start ()
     {
         this.GetComponent<CircleCollider2D>();
         InvokeRepeating("DeductEnergy", 1.0f, energyDeductionInterval);
 
         text = GetComponentInChildren<TextMesh>();
-
-        fuelWithWood.onClick.AddListener(FuelWithWood);
-        fuelWithCoal.onClick.AddListener(FuelWithCoal);
-        fuelWithRenew.onClick.AddListener(FuelWithRenewables);
-        fuelWithUranium.onClick.AddListener(FuelWithUranium);
-        fuelWithMeteorium.onClick.AddListener(FuelWithMeteorium);
 	}
+
 
     private void FixedUpdate()
     {
@@ -58,13 +50,16 @@ public class Generator : MonoBehaviour {
         {
             guiTrue = !guiTrue;
             inReach = false;
+            GameObject.FindObjectOfType<EnergySystem>().GetComponent<EnergySystem>().generatorTaget = null;
+            GameObject.FindObjectOfType<EnergySystem>().GetComponent<EnergySystem>().ChangeGUI(inReach);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "PlayerCollider")
         {
-            guiTrue = !guiTrue;
+            inReach = true;
+            GameObject.FindObjectOfType<EnergySystem>().GetComponent<EnergySystem>().generatorTaget = this;
         }
     }
     private void OnTriggerStay2D(Collider2D other)
@@ -72,12 +67,12 @@ public class Generator : MonoBehaviour {
         if (other.CompareTag("PlayerCollider"))
         {
             inReach = true;
-            Debug.Log("in reach generaot");
+            GameObject.FindObjectOfType<EnergySystem>().GetComponent<EnergySystem>().ChangeGUI(inReach);
         }
     }
 
     // Functions to deduct resources from the player inventory and fuel up the generator
-    private void FuelWithWood()
+    public void FuelWithWood()
     {
         PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
         if (inventory.wood > 0 && inReach)
@@ -95,7 +90,7 @@ public class Generator : MonoBehaviour {
             PolluteAir(pollutionPerWood);
         }
     }
-    private void FuelWithCoal()
+    public void FuelWithCoal()
     {
         PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
         if (inventory.coal > 0 && inReach)
@@ -113,11 +108,11 @@ public class Generator : MonoBehaviour {
             PolluteAir(pollutionPerCoal);
         }
     }
-    private void FuelWithRenewables()
+    public void FuelWithRenewables()
     {
 
     }
-    private void FuelWithUranium()
+    public void FuelWithUranium()
     {
         PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
         if (inventory.uranium > 0 && inReach)
@@ -134,7 +129,7 @@ public class Generator : MonoBehaviour {
             // -- No air pollution through uranium --
         }
     }
-    private void FuelWithMeteorium()
+    public void FuelWithMeteorium()
     {
         PlayerInventory inventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
         if (inventory.meteorium > 0 && inReach)
@@ -167,16 +162,16 @@ public class Generator : MonoBehaviour {
         {
             energyInGenerator -= 1;
             
-            if (oven.GetComponent<Oven>().ovenActive == false)
+            if (oven.GetComponent<Heatsource>().active == false)
             {
-                oven.GetComponent<Oven>().ChangeOvenStatus();
+                oven.GetComponent<Heatsource>().ChangeHeatsourceStatus();
             }
         }
         else if (energyInGenerator == 0)
         {
-            if (oven.GetComponent<Oven>().ovenActive == true)
+            if (oven.GetComponent<Heatsource>().active == true)
             {
-                oven.GetComponent<Oven>().ChangeOvenStatus();
+                oven.GetComponent<Heatsource>().ChangeHeatsourceStatus();
             }
         }
     }

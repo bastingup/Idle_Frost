@@ -13,7 +13,6 @@ public class InteractionPlayer : MonoBehaviour {
 	void Start ()
     {
         interactButton.onClick.AddListener(Interaction);
-        infoButton.onClick.AddListener(Information);
         // Sprint button is working with UI manager
 
         input = this.GetComponent<InputController>();

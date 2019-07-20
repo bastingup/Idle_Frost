@@ -8,7 +8,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Reward
 {
-    public enum Type { uranium, radiation, playerTemperature, wood, playerHealth };
+    public enum Type { uranium, radiation, campfire, wood, playerHealth };
     public Type typeOfReward;
 
     public string rewardMsg;
@@ -20,7 +20,7 @@ public class AdManager : MonoBehaviour
 {
     #region Fields
     [SerializeField]
-    private GameObject player, gameController;
+    private GameObject player, gameController, campfirePrefab;
     private string placementId = "rewardedVideo", gameId;
     private bool testMode = true, adViewable;
 
@@ -112,8 +112,10 @@ public class AdManager : MonoBehaviour
             case Reward.Type.uranium:
                 rewards[i].target.GetComponent<PlayerInventory>().uranium += rewards[i].rewardValue;
                 break;
-            case Reward.Type.playerTemperature:
-                rewards[i].target.GetComponent<PlayerHealth>().playerTemp += rewards[i].rewardValue;
+            case Reward.Type.campfire:
+                Transform t = rewards[i].target.transform;
+                Vector2 spawnAt = new Vector2(t.position.x + 1, t.position.y);
+                Instantiate(campfirePrefab, spawnAt, new Quaternion(0, 0, 0, 1));
                 break;
             case Reward.Type.wood:
                 rewards[i].target.GetComponent<PlayerInventory>().wood += rewards[i].rewardValue;
@@ -128,6 +130,7 @@ public class AdManager : MonoBehaviour
     // TODO better reward determination
     int DetermineReward()
     {
+        /*
         int i;
         // Check for radiation
         if (gameController.GetComponent<EcoStats>().radiation >= 30)
@@ -140,7 +143,10 @@ public class AdManager : MonoBehaviour
             i = 2;
         else
             i = UnityEngine.Random.Range(3, 4);
- 
+        */
+
+        int i = (int)UnityEngine.Random.Range(0, 5);
+
         adButton.GetComponentInChildren<Text>().text = rewards[i].rewardMsg;
         return i;
     }

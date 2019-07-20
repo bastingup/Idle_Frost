@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class Farm : MonoBehaviour {
 
-    [SerializeField]
-    private Button veganButton, veggiButton, meatButton;
-    private bool guiTrue = false, inReach = false, available = true;
+    private bool inReach = false, available = true;
     private TextMesh text;
 
     [SerializeField]
@@ -27,10 +25,6 @@ public class Farm : MonoBehaviour {
     {
         this.GetComponent<CircleCollider2D>();
         text = GetComponentInChildren<TextMesh>();
-
-        veganButton.onClick.AddListener(Vegan);
-        veggiButton.onClick.AddListener(Veggi);
-        meatButton.onClick.AddListener(Meat);
 	}
 
     private void FixedUpdate()
@@ -54,15 +48,18 @@ public class Farm : MonoBehaviour {
     {
         if (other.CompareTag("PlayerCollider"))
         {
-            guiTrue = !guiTrue;
             inReach = false;
+            GameObject.FindObjectOfType<FarmSystem>().GetComponent<FarmSystem>().farmTarget = null;
+            GameObject.FindObjectOfType<FarmSystem>().GetComponent<FarmSystem>().ChangeGUI(inReach);
         }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("PlayerCollider"))
         {
-            guiTrue = !guiTrue;
+            inReach = true;
+            GameObject.FindObjectOfType<FarmSystem>().GetComponent<FarmSystem>().farmTarget = this;
+            GameObject.FindObjectOfType<FarmSystem>().GetComponent<FarmSystem>().ChangeGUI(inReach);
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -73,7 +70,7 @@ public class Farm : MonoBehaviour {
         }
     }
 
-    void Vegan()
+    public void Vegan()
     {
         if (available && inReach)
         {
@@ -83,7 +80,7 @@ public class Farm : MonoBehaviour {
             available = false;
         }
     }
-    void Veggi()
+    public void Veggi()
     {
         if (available && inReach)
         {
@@ -93,7 +90,7 @@ public class Farm : MonoBehaviour {
             StartCoroutine(CoolDown(timeToWait));
         }
     }
-    void Meat()
+    public void Meat()
     {
         if (available && inReach)
         {
